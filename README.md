@@ -1,6 +1,6 @@
 # Dummy book shop 
 
-## Django-based app + microservices 
+## Django app + microservices 
 
 The App has been created for learning purposes.
 Objective - to develop a complex application from scratch using defined list of microservices. 
