@@ -1,5 +1,7 @@
 ***
 ### 1. Planning
+- analysis of the project purpose and architecture
+- drafting models, views, page templates
 
 ***
 ### 2. Creation of project environment
@@ -100,14 +102,14 @@ deactivate
 
 **That's it, now the project can be opened via Pycharm. <br> Each microservice will have its own virtual environment. <br>
 There are a few ways to open the project in Pycharm:**
-- open the root folder "dummy_shop" to manage it as consistent git repository
+- open the root folder "dummy_shop" to manage it as consistent Git repository
 - open each microservice as a separate project
 - open the first service and ***attach*** the second service to have them both executable from the same Pycharm window 
 
 **To have django "shop" and django REST "storage" configurations both executable from the same Pycharm Window:**
 - open first service (for example "microservice_shop" folder) as a new project
 - open second service ("microservice_storage" folder) and select the option "Attach"
-- open Settings/Project:"first_service name"/Python Interpreter and make sure that both services have interpretator selected/added
+- open Settings/Project:"first_service name"/Python Interpreter and make sure that both services have interpreter selected/added
 - open Settings/Project:"first_service name"/Project Dependencies and make sure that both services have no dependencies
 - open Settings/Project:"first_service name"/Project Structure and make sure that both services have its virtual env folders marked as "Excluded"
 - open Settings/Languages & Frameworks/Django and make sure that both services have enabled "Enable Django Support" and have "Django project root", "Settings" and "Manage script" selected/added appropriately
@@ -143,7 +145,7 @@ git commit -m "initital commit"
 ```
 git branch -m main
 ```
-- connection to remote github new repository that has been created preliminairy via github.com website
+- connection to remote GitHub new repository that has been created preliminary via github.com website
 ```
 git remote add origin git@github.com:gorgeous-george/dummy_shop.git
 ```
@@ -151,13 +153,62 @@ git remote add origin git@github.com:gorgeous-george/dummy_shop.git
 ```
 git push -u origin main
 ```
+- creating local branch "develop" && switching to it && adding files to git tracker
+```
+git branch develop && git checkout develop && git add .
+```
 
-!!!!! to add info about development branch, pull request, branch rules
+That's it, local Git repository has been created and connected to remote GitHub repository. <br><br>
+**Don't forget to create branch protection rules to require pull request approval before merging to GitHub branch "main".**
+
+**Code committing and pushing workflow is supposed to be the following:**
+- Code development is performed within separate local Git branch "develop"
+- Local commits are created and then pushed to GitHub branch "develop"
+```
+git add .
+git status
+git commit -m 'commit message'
+git push --set-upstream origin develop
+```
+- At GitHub a pull request is created to merge branch "develop" to branch "main"
+- Local branch "main" is synchronized with GitHub branch "main"
+```
+git checkout main && git pull
+```
+- Local branch "develop" is deleted
+- GitHub branch "develop" is deleted
 
 
 ***
 ### 3. Development
 
+To create new apps, models, views, etc - don't forget to switch ".venv_shop" and ".venv_storage" virtual environments appropriately 
+
+#### 3.1 Creating apps
+
+- creating applications for "shop" : "auth", "book", "order"
+```
+source microservice_shop/.venv_shop/bin/activate
+cd microservice_shop
+./manage.py startapp auth
+./manage.py startapp book
+./manage.py startapp order
+deactivate
+```
+- adding new applications to INSTALLED_APPS in "shop" settings
+- creating applications for "storage" : "book", "order"
+```
+source microservice_storage/.venv_storage/bin/activate
+cd microservice_storage
+./manage.py startapp book
+./manage.py startapp order
+```
+- adding new applications to INSTALLED_APPS in "storage" settings
+
+#### 3.2 Creating models
+#### 3.3 Creating templates
+#### 3.4 Creating views
+#### 3.5 Configuring urls
 
 
 ***
