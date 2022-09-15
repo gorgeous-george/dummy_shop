@@ -162,6 +162,78 @@ git branch --delete develop
 - Back to the first step
 
 ***
+#### 2.4 Containerization - configuring docker and docker-compose
+
+- creating folder "docker" to have all settings there
+- creating folders "shop" and "storage" for each service appropriately
+- creating Dockerfile for each service (can be also "service_name".Dockerfile)
+```
+cd && cd PycharmProjects/dummy_shop
+mkdir docker && cd docker
+mkdir shop && cd shop
+touch Dockerfile
+cd .. && mkdir storage && cd storage
+touch Dockerfile
+```
+- adding configurations to Dockerfiles appropriately for "shop" and "storage"
+> shop/Dockerfile <br>
+> storage/Dockerfile
+
+- creating .env file to keep sensitive data required by docker-compose (DJANGO_SECRET_KEY and DB credentials)
+```
+cd && cd PycharmProjects/dummy_shop
+touch shop.env
+```
+- adding the shop.env file to .gitignore <br><br>
+
+- creating docker-compose.yml file
+```
+cd && cd PycharmProjects/dummy_shop
+touch docker-compose.yml
+```
+- configuring docker-compose.yml 
+> docker-compose.yml <br><br>
+>   services:
+> - shop
+> - storage
+> - ...
+
+- building and running up the docker-compose
+```
+sudo docker-compose build
+sudo docker-compose up
+...
+CTRL+C
+sudo docker-compose down
+```
+
+***
+#### 2.5 Configuring database layer
+- installing DB PostgreSQL for "shop" service
+  - installing psycopg library
+  ```
+  cd && cd PycharmProjects/dummy_shop/microservice_shop
+  source .venv_shop/bin/activate
+  pip install psycopg2-binary
+  pip freeze > requirements.txt
+  ```
+  - updating "microservice_shop/core.settings" - DATABASES
+  - adding appropriate DATABASE credentials to "shop.env" file
+  - containerization: 
+    - adding new service "db_shop" to "django-compose.yml"
+    - updating service "shop" appropriately at "django-compose.yml"
+    - adding appropriate network at "django-compose.yml"
+  - building and running up the docker-compose
+  ```
+  sudo docker-compose pull
+  sudo docker-compose build
+  sudo docker-compose up
+  ...
+  CTRL+C
+  sudo docker-compose down
+  ```
+
+***
 ### 3. Development
 
 To create new apps, models, views, etc - don't forget to switch ".venv_shop" and ".venv_storage" virtual environments appropriately 
@@ -193,50 +265,8 @@ cd microservice_storage
 #### 3.5 Configuring urls
 
 
-#### 3.6 Containerization - configuring docker and docker-compose
 
-- creating folder "docker" to have all settings there
-- creating folders "shop" and "storage" for each service appropriately
-- creating Dockerfile for each service (can be also "service_name".Dockerfile)
-```
-cd && cd PycharmProjects/dummy_shop
-mkdir docker && cd docker
-mkdir shop && cd shop
-touch Dockerfile
-cd .. && mkdir storage && cd storage
-touch Dockerfile
-```
-- adding configurations to Dockerfiles appropriately for "shop" and "storage"
-> shop/Dockerfile <br>
-> storage/Dockerfile
 
-- creating .env file to keep sensitive data required by docker-compose (DJANGO_SECRET_KEY and DB credentials)
-```
-cd && cd PycharmProjects/dummy_shop
-touch shop.env
-```
-- adding the .env file to .gitignore <br><br>
-
-- creating docker-compose.yml file
-```
-cd && cd PycharmProjects/dummy_shop
-touch docker-compose.yml
-```
-- configuring docker-compose.yml 
-> docker-compose.yml <br><br>
->   services:
-> - shop
-> - storage
-> - ...
-
-- building and running up the docker-compose
-```
-sudo docker-compose build
-sudo docker-compose up
-...
-CTRL+C
-sudo docker-compose down
-```
 
 ***
 ### 4. Testing
