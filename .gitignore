@@ -3,6 +3,9 @@
 microservice_shop/.idea
 microservice_storage/.idea
 
+# Docker environment variables
+shop.env
+
 # Django #
 *.log
 *.pot

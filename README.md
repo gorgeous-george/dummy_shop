@@ -28,6 +28,14 @@ python3 manage.py fill_db # to fill the database with lorem ipsum data
 python3 manage.py runserver
 ```
 
+**Add shop.env file in root with content**
+
+DJANGO_SECRET_KEY=
+DB_HOST=
+DB_PORT=
+DB_USER=
+DB_PASSWORD=
+DB_NAME=
 
 Now the application is working
 - To open the "SHOP" main page - open a browser to http://127.0.0.1:8000/

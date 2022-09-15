@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  shop:
+    container_name: shop
+    build:
+      context: .
+      dockerfile: docker/shop/shop.Dockerfile
+    env_file:
+      - shop.env
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://0.0.0.0:8000/admin/login/"]
+      interval: 1m
+      timeout: 5s
+      retries: 2

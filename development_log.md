@@ -9,99 +9,65 @@ Purpose is to create two separate folders each having separate virtual environme
 Pycharm is not able to create such structure. So that command line is used instead.
 
 #### 2.1 Creation of Pycharm environment (folders, virtual environments, initial configurations)
--  moving to PycharmProjects directory
-```
-cd && cd PycharmProjects/
-```
+- open the terminal on Ubuntu
+- moving to PycharmProjects directory
 - creating a folder for the whole project
 ```
-mkdir dummy_shop
+$ cd && cd PycharmProjects/
+$ mkdir dummy_shop
 ```
-- moving to the project's directory
-```
-cd dummy_shop
-```
+- moving to the project's root directory
 - creating a folder for the first microservice - "shop". It is supposed to be a django server
-```
-mkdir microservice_shop
-```
 - moving to "shop" directory with aim to create virtual environment within
-```
-cd microservice_shop
-```
 - creating virtual environment for "shop" microservice
-```
-python3 -m venv .venv_shop
-```
 - activation of the virtual environment for "shop" microservice
 ```
-source .venv_shop/bin/activate
+$ cd dummy_shop
+$ mkdir microservice_shop && cd microservice_shop
+$ python3 -m venv .venv_shop
+$ source .venv_shop/bin/activate
 ```
 - updating pip for future use
-```
-pip install -U pip
-```
 - installing Django framework
-```
-pip install django
-```
 - starting a django project for "shop" microservice. Namely, it is creation of manage.py file and "core" directory containing main django settings
-```
-django-admin startproject core .
-```
 - creating initial "requirements.txt" file supposed to keep the list of all required relations/libraries
-```
-pip freeze > requirements.txt
-```
 - deactivation of the virtual environment
 ```
-deactivate
+$ pip install -U pip
+$ pip install django
+$ django-admin startproject core .
+$ pip freeze > requirements.txt
+$ deactivate
 ```
-
-
+- moving to project's root directory
 - creating a folder for the second microservice - "storage". It is supposed to be a django REST API
-```
-mkdir microservice_storage
-```
 - moving to "storage" directory with aim to create virtual environment within
-```
-cd microservice_storage
-```
 - creating virtual environment for "storage" microservice
-```
-python3 -m venv .venv_storage
-```
 - activation of the virtual environment for "storage" microservice
 ```
-source .venv_storage/bin/activate
+$ cd && cd PycharmProjects/dummy_shop
+$ mkdir microservice_storage
+$ cd microservice_storage
+$ python3 -m venv .venv_storage
+$ source .venv_storage/bin/activate
 ```
 - updating pip for future use
-```
-pip install -U pip
-```
 - installing Django framework
-```
-pip install django
-```
 - installing Django REST framework
-```
-pip install djangorestframework
-```
 - starting a django project for "storage" microservice. Namely, it is creation of manage.py file and "core" directory containing main django settings
-```
-django-admin startproject core .
-```
 - creating initial "requirements.txt" file supposed to keep the list of all required relations/libraries
-```
-pip freeze > requirements.txt
-```
 - deactivation of the virtual environment
 ```
-deactivate
+$ pip install -U pip
+$ pip install django
+$ pip install djangorestframework
+$ django-admin startproject core .
+$ pip freeze > requirements.txt
+$ deactivate
 ```
 
-**That's it, now the project can be opened via Pycharm. <br> Each microservice will have its own virtual environment. <br>
-There are a few ways to open the project in Pycharm:**
+That's it, now the project can be opened via Pycharm. Each microservice will have its own virtual environment. <br>
+**There are a few ways to open the project in Pycharm:**
 - open the root folder "dummy_shop" to manage it as consistent Git repository
 - open each microservice as a separate project
 - open the first service and ***attach*** the second service to have them both executable from the same Pycharm window 
@@ -117,67 +83,83 @@ There are a few ways to open the project in Pycharm:**
 
 ***Don't forget to secure the SECRET_KEYS***
 
+***
+#### 2.2 Installing Docker
+
+- open the terminal on Ubuntu
+- remove any Docker files that are running in the system
+- check if the system is up-to-date
+- install Docker
+- install all the dependency packages
+- before testing Docker, check the version installed
+- pull an image from the Docker hub
+- check if the docker image has been pulled and is present in your system
+- display all the containers pulled
+- check for containers in a running state
+
+```
+$ sudo apt-get remove docker docker-engine docker.io
+$ sudo apt-get update
+$ sudo apt install docker.io
+$ sudo snap install docker
+$ docker --version
+$ sudo docker run hello-world
+$ sudo docker images
+$ sudo docker ps -a
+$ sudo docker ps
+```
+
+That's it, Docker is successfully installed on Ubuntu!
 
 ***
-#### 2.2 Creation and configuring git repository
+#### 2.3 Creation and configuring git repository
 
+- creating new repository at GitHub to have it as remote repository
+- creating and configuring SSH keys
+- configuring branch protection rules for "main" branch at least
+> https://github.com/gorgeous-george/dummy_shop
 - creating local git repository
-```
-git init
-```
 - creating README file for the repository
-```
-touch README.md
-```
 - creating .gitingore file to keep a particular project directories/files unpublished
-```
-touch .gitignore
-```
 - adding existed directories/files to git
-``` 
-git add .
-```
 - committing the README file to local git repository
-```
-git commit -m "initital commit"
-```
 - renaming branch from "master" to "main"
-```
-git branch -m main
-```
 - connection to remote GitHub new repository that has been created preliminary via github.com website
-```
-git remote add origin git@github.com:gorgeous-george/dummy_shop.git
-```
 - pushing the README file to remote repository 
-```
-git push -u origin main
-```
 - creating local branch "develop" && switching to it && adding files to git tracker
 ```
+cd && cd PycharmProjects/dummy_shop
+git init
+touch README.md
+touch .gitignore
+git add .
+git commit -m "initial commit"
+git branch -m main
+git remote add origin git@github.com:gorgeous-george/dummy_shop.git
+git push -u origin main
 git branch develop && git checkout develop && git add .
 ```
 
-That's it, local Git repository has been created and connected to remote GitHub repository. <br><br>
-**Don't forget to create branch protection rules to require pull request approval before merging to GitHub branch "main".**
+That's it, local Git repository has been created and connected to remote GitHub repository. <br>
 
 **Code committing and pushing workflow is supposed to be the following:**
-- Code development is performed within separate local Git branch "develop"
-- Local commits are created and then pushed to GitHub branch "develop"
+- Code development is performed within separate local branch "develop". Local commits are created and then pushed to GitHub branch "develop"
 ```
+git branch develop && git checkout develop
 git add .
 git status
 git commit -m 'commit message'
 git push --set-upstream origin develop
 ```
 - At GitHub a pull request is created to merge branch "develop" to branch "main"
+- GitHub branch "develop" is deleted
 - Local branch "main" is synchronized with GitHub branch "main"
+- Local branch "develop" is deleted
 ```
 git checkout main && git pull
+git branch --delete develop
 ```
-- Local branch "develop" is deleted
-- GitHub branch "develop" is deleted
-
+- Back to the first step
 
 ***
 ### 3. Development
@@ -210,6 +192,51 @@ cd microservice_storage
 #### 3.4 Creating views
 #### 3.5 Configuring urls
 
+
+#### 3.6 Containerization - configuring docker and docker-compose
+
+- creating folder "docker" to have all settings there
+- creating folders "shop" and "storage" for each service appropriately
+- creating Dockerfile for each service (can be also "service_name".Dockerfile)
+```
+cd && cd PycharmProjects/dummy_shop
+mkdir docker && cd docker
+mkdir shop && cd shop
+touch Dockerfile
+cd .. && mkdir storage && cd storage
+touch Dockerfile
+```
+- adding configurations to Dockerfiles appropriately for "shop" and "storage"
+> shop/Dockerfile <br>
+> storage/Dockerfile
+
+- creating .env file to keep sensitive data required by docker-compose (DJANGO_SECRET_KEY and DB credentials)
+```
+cd && cd PycharmProjects/dummy_shop
+touch shop.env
+```
+- adding the .env file to .gitignore <br><br>
+
+- creating docker-compose.yml file
+```
+cd && cd PycharmProjects/dummy_shop
+touch docker-compose.yml
+```
+- configuring docker-compose.yml 
+> docker-compose.yml <br><br>
+>   services:
+> - shop
+> - storage
+> - ...
+
+- building and running up the docker-compose
+```
+sudo docker-compose build
+sudo docker-compose up
+...
+CTRL+C
+sudo docker-compose down
+```
 
 ***
 ### 4. Testing
