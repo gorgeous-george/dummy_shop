@@ -1,10 +1,12 @@
 FROM python:3.9
 
-COPY ./storage/requirements.txt /
+COPY /microservice_storage/requirements.txt /
+
+RUN python -m pip install --upgrade pip
 
 RUN pip install -r requirements.txt
 
-COPY ./storage/ /app
+COPY /microservice_storage/ /app
 
 WORKDIR /app
 

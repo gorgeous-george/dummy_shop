@@ -193,10 +193,15 @@ touch docker-compose.yml
 ```
 - configuring docker-compose.yml 
 > docker-compose.yml <br><br>
->   services:
+> services
 > - shop
 > - storage
-> - ...
+> - db_shop
+> - db_storage
+<br><br>
+> networks
+<br>
+> volumes
 
 - building and running up the docker-compose
 ```
@@ -209,7 +214,7 @@ sudo docker-compose down
 
 ***
 #### 2.5 Configuring database layer
-- installing DB PostgreSQL for "shop" service
+- installing DB PostgreSQL for "shop" service (the same steps performed for "storage" service)
   - installing psycopg library
   ```
   cd && cd PycharmProjects/dummy_shop/microservice_shop
@@ -219,16 +224,22 @@ sudo docker-compose down
   ```
   - updating "microservice_shop/core.settings" - DATABASES
   - adding appropriate DATABASE credentials to "shop.env" file
-  - containerization: 
-    - adding new service "db_shop" to "django-compose.yml"
-    - updating service "shop" appropriately at "django-compose.yml"
-    - adding appropriate network at "django-compose.yml"
+  - updating "django-compose.yml"
   - building and running up the docker-compose
+  <br>
+
+  - connecting to docker container's bash terminal and running migrations
   ```
-  sudo docker-compose pull
-  sudo docker-compose build
-  sudo docker-compose up
-  ...
+  sudo docker-compose exec shop bash
+  ./manage.py migrate
+  ./manage.py createsuperuser
+  exit
+  ``` 
+  
+  <br>
+  
+  - to shut the docker-compose down the following command is used
+  ```
   CTRL+C
   sudo docker-compose down
   ```
