@@ -5,7 +5,7 @@
 
 ***
 ### 2. Creation of project environment
-Purpose is to create two separate folders each having separate virtual environment - for "shop" and "storage" microservices appopriately.
+Purpose is to create two separate folders each having separate virtual environment - for "shop" and "storage" microservices appropriately.
 Pycharm is not able to create such structure. So that command line is used instead.
 
 #### 2.1 Creation of Pycharm environment (folders, virtual environments, initial configurations)
@@ -224,7 +224,9 @@ sudo docker-compose down
   ```
   - updating "microservice_shop/core.settings" - DATABASES
   - adding appropriate DATABASE credentials to "shop.env" file
-  - updating "django-compose.yml"
+  - updating "django-compose.yml" with db services
+  - creating "docker-entrypoint.sh" and "wait-for-command.sh" to check that db is up before running services dependent on db
+  - updating Dockerfile
   - building and running up the docker-compose
   <br>
 
@@ -243,6 +245,12 @@ sudo docker-compose down
   CTRL+C
   sudo docker-compose down
   ```
+
+***
+#### 2.5 Configuring other services:
+- celery
+- TBD...
+
 
 ***
 ### 3. Development
