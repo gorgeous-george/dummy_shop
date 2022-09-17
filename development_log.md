@@ -199,9 +199,8 @@ touch docker-compose.yml
 > - db_shop
 > - db_storage
 <br><br>
-> networks
-<br>
-> volumes
+> networks: <br>
+> volumes:
 
 - building and running up the docker-compose
 ```
