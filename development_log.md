@@ -5,10 +5,12 @@
 
 ***
 ### 2. Creation of project environment
-Purpose is to create two separate folders each having separate virtual environment - for "shop" and "storage" microservices appropriately.
+- Install python
+- Install Pycharm software <br>
+Now, the purpose is to create two separate folders each having separate virtual environment - for "shop" and "storage" microservices appropriately. <br>
 Pycharm is not able to create such structure. So that command line is used instead.
 
-#### 2.1 Creation of Pycharm environment (folders, virtual environments, initial configurations)
+#### 2.1 Creation of Pycharm environment via command line (folders, virtual environments, initial configurations)
 - open the terminal on Ubuntu
 - moving to PycharmProjects directory
 - creating a folder for the whole project
@@ -193,13 +195,15 @@ touch docker-compose.yml
 ```
 - configuring docker-compose.yml 
 > docker-compose.yml <br><br>
-> services
+> services:
 > - shop
 > - storage
 > - db_shop
 > - db_storage
 <br><br>
-> networks: <br>
+>
+> networks:
+> 
 > volumes:
 
 - building and running up the docker-compose
@@ -213,7 +217,7 @@ sudo docker-compose down
 
 ***
 #### 2.5 Configuring database layer
-- installing DB PostgreSQL for "shop" service (the same steps performed for "storage" service)
+- installing DB PostgreSQL for "shop" service (***the same steps performed for "storage" service***)
   - installing psycopg library
   ```
   cd && cd PycharmProjects/dummy_shop/microservice_shop
@@ -232,6 +236,7 @@ sudo docker-compose down
   - connecting to docker container's bash terminal and running migrations
   ```
   sudo docker-compose exec shop bash
+  ./manage.py makemigrations
   ./manage.py migrate
   ./manage.py createsuperuser
   exit
@@ -278,8 +283,18 @@ cd microservice_storage
 - adding new applications to INSTALLED_APPS in "storage" settings
 
 #### 3.2 Creating models
+
+- creating/updating models for "shop" and "storage"
+- registering models at admin.py
+- rebuilding docker-compose
+- connecting to "shop" and "storage" containers to apply migrations
+
 #### 3.3 Creating templates
+
+
 #### 3.4 Creating views
+
+
 #### 3.5 Configuring urls
 
 
