@@ -263,11 +263,11 @@ To create new apps, models, views, etc - don't forget to switch ".venv_shop" and
 
 #### 3.1 Creating apps
 
-- creating applications for "shop" : "auth", "book", "order"
+- creating applications for "shop" : "auth_shop", "book", "order"
 ```
 source microservice_shop/.venv_shop/bin/activate
 cd microservice_shop
-./manage.py startapp auth
+./manage.py startapp auth_shop
 ./manage.py startapp book
 ./manage.py startapp order
 deactivate
@@ -289,7 +289,35 @@ cd microservice_storage
 - rebuilding docker-compose
 - connecting to "shop" and "storage" containers to apply migrations
 
+- Picture of models created TBD 
+
 #### 3.3 Creating templates
+
+- 3.3.1 - **"shop"** service
+    - base_generic template
+    - index for homepage
+  - 3.3.1.1 - **"auth_shop"** application
+    - registration:
+      - register
+      - login
+      - logged_out
+      - profile
+      - update_profile
+      - password_reset_complete
+      - password_reset_confirm
+      - password_reset_done
+      - password_reset_email
+      - password_reset_form
+    - 3.3.1.2 - **"book"** application
+      - TBD
+    - 3.3.1.3 - **"order"** application
+      - TBD
+- 3.3.2 - **"storage"** service
+    - 3.3.2.1 - **"book"** application
+      - TBD
+    - 3.3.2.2 - **"order"** application
+      - TBD
+
 
 
 #### 3.4 Creating views
@@ -298,22 +326,13 @@ cd microservice_storage
 #### 3.5 Configuring urls
 
 
-
-
-
 ***
 ### 4. Testing
-
 
 
 ***
 ### 5. Implementing (deploy)
 
 
-
 ***
 ### 6. Post-implementation checks
-
-
-
-
