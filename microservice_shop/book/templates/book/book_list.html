@@ -1,0 +1,40 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Best sellers</h1>
+    <hr>
+    <br>
+    <form class="d-flex" role="filter">
+        <input class="form-control me-2" type="filter" placeholder="filter" aria-label="Filter">
+    </form>
+    <br>
+
+    {% if book_list %}
+
+      {% for book in book_list %}
+
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{{ book.cover.url }}" class="img-fluid rounded-start" alt="Book image">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ book.title }}</h5>
+            <p class="card-text">{{ book.description }}</p>
+            <p class="card-text"><small class="text-muted">Left in stock - {{ book.left_in_stock }}</small></p>
+            <a href="#" class="btn btn-primary">Detailed information</a>
+            <a href="#" class="btn btn-primary">Add to cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      {% endfor %}
+
+
+    {% else %}
+      <p>The are no books available at Dummy Shop. Stay tuned!</p>
+    {% endif %}
+
+{%  endblock %}
