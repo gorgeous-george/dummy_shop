@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Shopping cart</h1>
+<hr>
+
+    {% if order_list %}
+    <ul>
+
+      {% for order in order_list %}
+          <li> Order# {{ order.id }}</li>
+          <li> {{ order.client }} </li>
+          <li> {{ order.delivery_address}} </li>
+          <br>
+      {% endfor %}
+
+    <button class="btn btn-success" type="submit">Confirm Order</button>
+
+    </ul>
+
+    {% else %}
+      <p>The shopping cart is empty</p>
+    {% endif %}
+
+{%  endblock %}

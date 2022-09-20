@@ -31,12 +31,14 @@ $ source .venv_shop/bin/activate
 ```
 - updating pip for future use
 - installing Django framework
+- installing required libraries such as Pillow (work with pictures)
 - starting a django project for "shop" microservice. Namely, it is creation of manage.py file and "core" directory containing main django settings
 - creating initial "requirements.txt" file supposed to keep the list of all required relations/libraries
 - deactivation of the virtual environment
 ```
 $ pip install -U pip
 $ pip install django
+$ pip install Pillow
 $ django-admin startproject core .
 $ pip freeze > requirements.txt
 $ deactivate
@@ -252,6 +254,7 @@ sudo docker-compose down
 
 ***
 #### 2.5 Configuring other services:
+- django-debug-toolbar for both "shop" and (TBD "storage") services (https://django-debug-toolbar.readthedocs.io/en/latest/installation.html)
 - celery
 - TBD...
 
@@ -294,10 +297,14 @@ cd microservice_storage
 #### 3.3 Creating templates
 
 - 3.3.1 - **"shop"** service
-    - base_generic template
-    - index for homepage
+    - update settings.py to have the only one base_generic.html for all applications
+      ```
+      'DIRS': [os.path.join(BASE_DIR, 'templates')], 
+      ```
+    - creation of base_generic.html template, saving it to dummy_shop/microservice_shop/templates
+    - creation of index.html for homepage
   - 3.3.1.1 - **"auth_shop"** application
-    - registration:
+    - dummy_shop/microservice_shop/auth_shop/templates/registration:
       - register
       - login
       - logged_out

@@ -16,7 +16,8 @@ class Book(models.Model):
     description = models.CharField(max_length=500)
     author = models.CharField(max_length=200)
     genre = models.CharField(max_length=200)
-    price = models.DecimalField(default=0, max_digits=3, decimal_places=2)
+    price = models.DecimalField(default=0, max_digits=4, decimal_places=2)
+    cover = models.ImageField(upload_to='book/')
     left_in_stock = models.IntegerField(default=0)       #  todo: to make it calculated based on book instances left in stock (API storage)
     storage_book_id = models.IntegerField(default=0)     #  todo: to make it synchronized with storage's Book.id
 
