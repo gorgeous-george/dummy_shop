@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+    <div class="card mb-3" style="max-width: 1080px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{{ book.cover.url }}" class="img-fluid rounded-start" alt="Book image">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ book.title }}</h5>
+            <p class="card-text">{{ book.description }}</p>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Author - {{ book.author }}</li>
+                <li class="list-group-item">Genre - {{ book.genre }}</li>
+                <li class="list-group-item">Price - {{ book.price }}</li>
+                <li class="list-group-item"><p class="card-text"><small class="text-muted">Left in stock - {{ book.left_in_stock }}</small></p></li>
+            </ul>
+            <br>
+            <a href="{% url 'shop_books' %}" class="btn btn-primary" role="button">Back</a>
+            <a href="#" class="btn btn-success" role="button">Add to cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

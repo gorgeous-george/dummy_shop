@@ -1,0 +1,45 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+    <h1>Shopping cart</h1>
+    <hr>
+
+    {% if orderitem_list %}
+
+        {% for orderitem in orderitem_list %}
+            <div class="card" style="width: 50%;">
+
+{#                <img src="{{ orderitem.book_id.cover.url }}" class="w-25" alt="Book image">#}
+
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Order# {{ orderitem.order_id.pk }}</li>
+                        <li class="list-group-item">Book title: {{ orderitem.book_id}}</li>
+                        <li class="list-group-item">Delivery address: {{ orderitem.order_id.delivery_address}}</li>
+                        <li class="list-group-item">Client: {{ orderitem.order_id.client }}</li>
+                        <li class="list-group-item">Email: {{ client.client.email }}</li>
+                    </ul>
+                    <br>
+                    <div class="input-group p-1">
+                        <span class="input-group-text" id="basic-addon1">Quantity: </span>
+                        <input type="text" class="form-control" placeholder={{orderitem.quantity}} aria-label="Quantity" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1">Price: </span>
+                        <input class="form-control" type="text" value="XX.00" aria-label="Disabled input example" disabled readonly>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+        {% endfor %}
+
+        <a href="{% url 'shop_books' %}" class="btn btn-primary" role="button">Back</a>
+        <a href="#" class="btn btn-success" role="button">Confirm order</a>
+
+        {% else %}
+
+            <p>The shopping cart is empty</p>
+
+    {% endif %}
+
+{%  endblock %}

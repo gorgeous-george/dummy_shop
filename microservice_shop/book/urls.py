@@ -1,8 +1,8 @@
 from django.urls import path
 
-from book.views import BookListView
+from book.views import BookDetailView, BookListView
 
 urlpatterns = [
-    path('index/', BookListView.as_view(), name='shop_books'),                      # main page with all books
-    # path('index/book_details', BookDetailView.as_view(), name='shop_book_detail'),  # specific book detailed page
+    path('', BookListView.as_view(), name='shop_books'),                               # page showing all books
+    path('book_details/<int:pk>', BookDetailView.as_view(), name='shop_book_detail'),  # specific book detailed page
     ]
