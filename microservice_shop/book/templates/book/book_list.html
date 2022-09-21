@@ -5,7 +5,7 @@
     <hr>
     <br>
     <form class="d-flex" role="filter">
-        <input class="form-control me-2" type="filter" placeholder="filter" aria-label="Filter">
+        <input class="form-control me-2" type="filter" placeholder="filter" aria-label="Filter" width="540px">
     </form>
     <br>
 
@@ -23,8 +23,8 @@
             <h5 class="card-title">{{ book.title }}</h5>
             <p class="card-text">{{ book.description }}</p>
             <p class="card-text"><small class="text-muted">Left in stock - {{ book.left_in_stock }}</small></p>
-            <a href="#" class="btn btn-primary">Detailed information</a>
-            <a href="#" class="btn btn-primary">Add to cart</a>
+            <a href="{% url 'shop_book_detail' book.pk %}" class="btn btn-primary">Detailed information</a>
+            <a href="#" class="btn btn-success">Add to cart</a>
           </div>
         </div>
       </div>

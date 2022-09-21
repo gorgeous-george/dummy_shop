@@ -84,6 +84,7 @@ That's it, now the project can be opened via Pycharm. Each microservice will hav
 - open Settings/Project:"first_service name"/Project Structure and make sure that both services have its virtual env folders marked as "Excluded"
 - open Settings/Languages & Frameworks/Django and make sure that both services have enabled "Enable Django Support" and have "Django project root", "Settings" and "Manage script" selected/added appropriately
 - open Run/Edit Configurations and create django server configuration for both services appropriately including name, project (selectable), interpreter and correct value of "DJANGO_SETTINGS_MODULE" environment variable
+- add alternative dummy databases to run the services outside the docker container (for example - SQLite)
 
 ***Don't forget to secure the SECRET_KEYS***
 
@@ -255,6 +256,7 @@ sudo docker-compose down
 ***
 #### 2.5 Configuring other services:
 - django-debug-toolbar for both "shop" and (TBD "storage") services (https://django-debug-toolbar.readthedocs.io/en/latest/installation.html)
+- django-extensions for both "shop" and (TBD "storage") services (https://django-extensions.readthedocs.io/en/latest/installation_instructions.html)
 - celery
 - TBD...
 
