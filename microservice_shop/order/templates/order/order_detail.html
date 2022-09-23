@@ -1,0 +1,47 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+    <h1>Shopping cart</h1>
+    <hr>
+
+    {% if order %}
+
+      <div class="card mb-3" style="max-width: 640px;">
+          <div class="card-body">
+              <h5 class="card-title">Order# 00{{ order.id }}</h5>
+              <br>
+              <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Book title</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {%  for orderitem in order.orderitem_set.all %}
+                    <tr>
+                      <td>{{ orderitem.book_id }}</td>
+                      <td>{{ orderitem.quantity }}</td>
+                      <td>{{ orderitem.book_id.price }}*{{ orderitem.quantity }}</td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+              </table>
+{#                <li class="list-group-item">Price - {{ book.price }}</li>#}
+{#                <li class="list-group-item"><p class="card-text"><small class="text-muted">Left in stock - {{ book.left_in_stock }}</small></p></li>#}
+            <br>
+          </div>
+    </div>
+
+        <a href="{% url 'shop_books' %}" class="btn btn-primary" role="button">Back</a>
+        <a href="{% url 'order_confirm' order.pk %}" class="btn btn-success" role="button">Confirm order</a>
+
+        {% else %}
+
+            <p>The shopping cart is empty</p>
+
+    {% endif %}
+
+{%  endblock %}

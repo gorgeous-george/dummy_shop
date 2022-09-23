@@ -38,11 +38,12 @@
         <ul class="sidebar-nav">
           <li><a href="{% url 'index' %}">Home</a></li>
           <li><a href="{% url 'shop_books' %}">Book shop</a></li>
-          <li><a href="{% url 'shop_cart' %}">Shopping cart</a></li>
         </ul>
 
         <ul class="sidebar-nav">
           {% if user.is_authenticated %}
+            <li><a href="{% url 'shop_cart' user.pk %}">Shopping cart</a></li>
+            <br>
             <li>Logged as: {{ user.get_username }}</li>
             <li><a href="{% url 'profile' %}">My profile</a></li>
             <li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>

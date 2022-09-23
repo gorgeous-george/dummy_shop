@@ -1,7 +1,13 @@
 from django import forms
 
+from order.models import Order
 
-class OrderForm(forms.Form):
-    email = forms.EmailField(required=True)
-    delivery_address = forms.CharField(required=True)
-    additional_details = forms.CharField(widget=forms.Textarea, required=True)
+
+class OrderUpdateForm (forms.ModelForm):
+
+    class Meta:
+        model = Order
+        fields = ['delivery_address']
+        exclude = ['id', 'client', 'status']
+
+

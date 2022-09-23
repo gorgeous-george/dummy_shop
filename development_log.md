@@ -318,7 +318,8 @@ cd microservice_storage
       - password_reset_email
       - password_reset_form
     - 3.3.1.2 - **"book"** application
-      - TBD
+      - book_list
+      - book_detail
     - 3.3.1.3 - **"order"** application
       - TBD
 - 3.3.2 - **"storage"** service
