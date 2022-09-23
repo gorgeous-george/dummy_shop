@@ -321,7 +321,10 @@ cd microservice_storage
       - book_list
       - book_detail
     - 3.3.1.3 - **"order"** application
-      - TBD
+      - order_detail
+      - order_confirm
+      - orderitem_list
+      - orderitem_form
 - 3.3.2 - **"storage"** service
     - 3.3.2.1 - **"book"** application
       - TBD
@@ -333,7 +336,11 @@ cd microservice_storage
 #### 3.4 Creating views
 
 
-#### 3.5 Configuring urls
+
+#### 3.5 Creating forms
+
+
+#### 3.6 Configuring urls
 
 
 ***
