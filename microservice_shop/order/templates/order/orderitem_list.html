@@ -18,7 +18,7 @@
                         <li class="list-group-item">Book title: {{ orderitem.book_id}}</li>
                         <li class="list-group-item">Delivery address: {{ orderitem.order_id.delivery_address}}</li>
                         <li class="list-group-item">Client: {{ orderitem.order_id.client }}</li>
-                        <li class="list-group-item">Email: {{ client.client.email }}</li>
+                        <li class="list-group-item">Email: {{ client.email }}</li>
                     </ul>
                     <br>
                     <div class="input-group p-1">
@@ -34,7 +34,7 @@
         {% endfor %}
 
         <a href="{% url 'shop_books' %}" class="btn btn-primary" role="button">Back</a>
-        <a href="#" class="btn btn-success" role="button">Confirm order</a>
+        <a href="{% url 'order_confirm' order_pk %}" class="btn btn-success" role="button">Confirm order</a>
 
         {% else %}
 

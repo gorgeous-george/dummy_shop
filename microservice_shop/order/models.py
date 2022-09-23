@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 from book.models import Book, User
 
 
@@ -28,7 +30,11 @@ class Order(models.Model):      # todo: to make Order.id synchronized with stora
         """
         String for representing the Model object.
         """
-        return str(self.status)
+        return str(self.id)
+
+    def get_absolute_url(self):
+        return reverse('shop_books')
+
 
 
 class OrderItem(models.Model):
@@ -38,3 +44,6 @@ class OrderItem(models.Model):
     order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
     book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)   #  todo: while creating new OrderItem object to have a check that OrderItem.quantity <= Book.left_in_stock
+
+    def get_absolute_url(self):
+        return reverse('shop_books')
