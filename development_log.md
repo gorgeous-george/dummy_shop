@@ -293,7 +293,7 @@ deactivate
 - rebuilding docker-compose
 - connecting to "shop" container to apply migrations
 
-- !(microservice_shop/shop_models_graph.png)
+- !(../microservice_shop/shop_models_graph.png)
 
 ##### Creating views
 
