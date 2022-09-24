@@ -9,7 +9,7 @@ from order.models import Order, OrderItem
 
 # class OrderItemListView(LoginRequiredMixin, ListView):
 #     """
-#     Class-based view for a list of all books added to shopping cart.
+#     Class-based view for a list of all order items added to shopping cart.
 #     """
 #     model = OrderItem
 #     paginate_by = 5
@@ -41,6 +41,9 @@ class OrderDetailView(LoginRequiredMixin, DetailView):
     template_name = 'order/order_detail.html'
 
     def get_object(self):
+        """
+        Returning the user's Order having status "CART" (supposed to have only one such Order at any point of time)
+        """
         obj = Order.objects.get(client=self.request.user, status='CART')
         return obj
 
@@ -73,6 +76,9 @@ class CartCreate(LoginRequiredMixin, CreateView):
         return initial
 
     def form_valid(self, form):
+        """
+        Form validation, and automatized adding a new Order Item to the database
+        """
         return super(CartCreate, self).form_valid(form)
 
 
@@ -95,7 +101,11 @@ class OrderConfirm(LoginRequiredMixin, UpdateView):
         return initial
 
     def form_valid(self, form):
-        obj = Order.objects.get(id=self.kwargs['pk'])
-        obj.status = 'ORDERED'  # todo: status is not updated by this commmand - need to fix
+        """
+        Form validation, and updating of Order status from "CART" to "ORDERED" in the database
+        """
+        result = super(OrderConfirm, self).form_valid(form)
+        obj = self.get_object()
+        obj.status = 'ORDERED'
         obj.save()
-        return super(OrderConfirm, self).form_valid(form)
+        return result

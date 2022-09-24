@@ -264,9 +264,11 @@ sudo docker-compose down
 ***
 ### 3. Development
 
-To create new apps, models, views, etc - don't forget to switch ".venv_shop" and ".venv_storage" virtual environments appropriately 
+To create new apps, models, views, etc. - don't forget to switch ".venv_shop" and ".venv_storage" virtual environments appropriately 
 
-#### 3.1 Creating apps
+#### 3.1 "Shop" service
+
+##### Creating apps
 
 - creating applications for "shop" : "auth_shop", "book", "order"
 ```
@@ -278,6 +280,83 @@ cd microservice_shop
 deactivate
 ```
 - adding new applications to INSTALLED_APPS in "shop" settings
+
+##### Creating models
+
+- creating/updating models for "shop"
+  - proxy User 
+  - Book 
+  - Order
+  - OrderItem
+- registering models at admin.py
+- rebuilding docker-compose
+- connecting to "shop" container to apply migrations
+
+- Picture of models created TBD 
+
+##### Creating views
+
+- **"auth_shop"** application
+  - index
+  - user profile
+  - user register
+  - user profile update
+  - *other auth views (password reset, login, logout) are standard django views*
+- **"book"** application
+  - book list
+  - book detail
+- **"order"** application 
+  - cart create
+  - order detail
+  - order confirm
+
+##### Creating templates
+
+- update settings.py to have the only one base_generic.html for all applications
+  ```
+  'DIRS': [os.path.join(BASE_DIR, 'templates')], 
+  ```
+- creation of base_generic.html template, saving it to dummy_shop/microservice_shop/templates
+- creation of index.html for homepage
+  
+- **"auth_shop"** application
+    - register
+    - login
+    - logged_out
+    - profile
+    - update_profile
+    - password_reset_complete
+    - password_reset_confirm
+    - password_reset_done
+    - password_reset_email
+    - password_reset_form
+  
+- **"book"** application
+  - book_list
+  - book_detail
+  
+- **"order"** application
+  - order_detail
+  - order_confirm
+  - orderitem_list
+  - orderitem_form
+
+##### Creating forms
+
+- register form (auth_shop/forms.py)
+- order create form (order/views)
+- order confirm form (order/forms.py)
+
+##### Configuring urls
+
+- core: '', admin, accounts, includes (auth, book, order), debugtoolbar
+- book: shop_books, shop_book_detail
+- order: cart_create, shop_cart, order_confirm 
+
+#### 3.2 "Storage" service
+
+##### Creating apps
+
 - creating applications for "storage" : "book", "order"
 ```
 source microservice_storage/.venv_storage/bin/activate
@@ -287,60 +366,28 @@ cd microservice_storage
 ```
 - adding new applications to INSTALLED_APPS in "storage" settings
 
-#### 3.2 Creating models
+##### Creating models
 
-- creating/updating models for "shop" and "storage"
+- creating/updating models for "storage"
 - registering models at admin.py
 - rebuilding docker-compose
-- connecting to "shop" and "storage" containers to apply migrations
+- connecting to "storage" container to apply migrations
 
 - Picture of models created TBD 
 
-#### 3.3 Creating templates
+##### Creating views
 
-- 3.3.1 - **"shop"** service
-    - update settings.py to have the only one base_generic.html for all applications
-      ```
-      'DIRS': [os.path.join(BASE_DIR, 'templates')], 
-      ```
-    - creation of base_generic.html template, saving it to dummy_shop/microservice_shop/templates
-    - creation of index.html for homepage
-  - 3.3.1.1 - **"auth_shop"** application
-    - dummy_shop/microservice_shop/auth_shop/templates/registration:
-      - register
-      - login
-      - logged_out
-      - profile
-      - update_profile
-      - password_reset_complete
-      - password_reset_confirm
-      - password_reset_done
-      - password_reset_email
-      - password_reset_form
-    - 3.3.1.2 - **"book"** application
-      - book_list
-      - book_detail
-    - 3.3.1.3 - **"order"** application
-      - order_detail
-      - order_confirm
-      - orderitem_list
-      - orderitem_form
-- 3.3.2 - **"storage"** service
-    - 3.3.2.1 - **"book"** application
-      - TBD
-    - 3.3.2.2 - **"order"** application
-      - TBD
+##### Configuring templates
+
+- **"book"** application
+  - TBD
+- **"order"** application
+  - TBD
+
+##### Creating forms
+##### Configuring urls
 
 
-
-#### 3.4 Creating views
-
-
-
-#### 3.5 Creating forms
-
-
-#### 3.6 Configuring urls
 
 
 ***
