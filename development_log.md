@@ -257,6 +257,7 @@ sudo docker-compose down
 #### 2.5 Configuring other services:
 - django-debug-toolbar for both "shop" and (TBD "storage") services (https://django-debug-toolbar.readthedocs.io/en/latest/installation.html)
 - django-extensions for both "shop" and (TBD "storage") services (https://django-extensions.readthedocs.io/en/latest/installation_instructions.html)
+- graph_models for both "shop" and (TBD "storage") services (https://django-extensions.readthedocs.io/en/latest/graph_models.html)
 - celery
 - TBD...
 
@@ -292,7 +293,7 @@ deactivate
 - rebuilding docker-compose
 - connecting to "shop" container to apply migrations
 
-- Picture of models created TBD 
+- !(/microservice_shop/shop_models_graph.png)
 
 ##### Creating views
 
