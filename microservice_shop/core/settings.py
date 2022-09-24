@@ -60,6 +60,11 @@ MIDDLEWARE = [
 
 ]
 
+# graph models settings
+GRAPH_MODELS = {
+  'app_labels': ["book", "order"],
+}
+
 if DEBUG:
     MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware'] + MIDDLEWARE
 
