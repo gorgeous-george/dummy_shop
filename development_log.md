@@ -289,11 +289,10 @@ deactivate
   - Book 
   - Order
   - OrderItem
+- ![graph](https://github.com/gorgeous-george/dummy_shop/blob/main/microservice_shop/shop_models_graph.png)
 - registering models at admin.py
 - rebuilding docker-compose
 - connecting to "shop" container to apply migrations
-
-- !(https://github.com/gorgeous-george/dummy_shop/blob/main/microservice_shop/shop_models_graph.png)
 
 ##### Creating views
 
