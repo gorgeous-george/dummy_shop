@@ -65,6 +65,8 @@ $ source .venv_storage/bin/activate
 $ pip install -U pip
 $ pip install django
 $ pip install djangorestframework
+$ pip install markdown
+$ pip install django-filter
 $ django-admin startproject core .
 $ pip freeze > requirements.txt
 $ deactivate
@@ -184,12 +186,13 @@ touch Dockerfile
 > shop/Dockerfile <br>
 > storage/Dockerfile
 
-- creating .env file to keep sensitive data required by docker-compose (DJANGO_SECRET_KEY and DB credentials)
+- creating .env files to keep sensitive data required by docker-compose (DJANGO_SECRET_KEY and DB credentials)
 ```
 cd && cd PycharmProjects/dummy_shop
 touch shop.env
+touch storage.env
 ```
-- adding the shop.env file to .gitignore <br><br>
+- adding the shop.env and storage.env files to .gitignore <br><br>
 
 - creating docker-compose.yml file
 ```
@@ -255,9 +258,9 @@ sudo docker-compose down
 
 ***
 #### 2.5 Configuring other services:
-- django-debug-toolbar for both "shop" and (TBD "storage") services (https://django-debug-toolbar.readthedocs.io/en/latest/installation.html)
-- django-extensions for both "shop" and (TBD "storage") services (https://django-extensions.readthedocs.io/en/latest/installation_instructions.html)
-- graph_models for both "shop" and (TBD "storage") services (https://django-extensions.readthedocs.io/en/latest/graph_models.html)
+- django-debug-toolbar for both "shop" and "storage" services (https://django-debug-toolbar.readthedocs.io/en/latest/installation.html)
+- django-extensions for both "shop" and "storage" services (https://django-extensions.readthedocs.io/en/latest/installation_instructions.html)
+- graph_models for both "shop" and "storage" services (https://django-extensions.readthedocs.io/en/latest/graph_models.html)
 - celery
 - TBD...
 
@@ -289,10 +292,11 @@ deactivate
   - Book 
   - Order
   - OrderItem
-- ![graph](https://github.com/gorgeous-george/dummy_shop/blob/main/microservice_shop/shop_models_graph.png)
+  - ![graph](https://github.com/gorgeous-george/dummy_shop/blob/main/microservice_shop/shop_models_graph.png)
 - registering models at admin.py
 - rebuilding docker-compose
 - connecting to "shop" container to apply migrations
+
 
 ##### Creating views
 
