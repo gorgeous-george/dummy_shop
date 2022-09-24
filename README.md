@@ -7,7 +7,7 @@ Objective is to develop a complex application from scratch using defined list of
 
 ## Architecture
 
-- '''concept scheme picture''' https://app.terrastruct.com/diagrams/1464302938
+- ![concept](https://app.terrastruct.com/diagrams/1464302938)
 - '''models scheme'''
 - '''data flow : synchronization, create order, update storage, return data'''
 
