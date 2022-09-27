@@ -35,10 +35,10 @@ class OrderItem(models.Model):
     Model representing an Order items, namely a list of unique book copies required to satisfy the order.
     Order items are created based on books ids and required quantity received from "shop"
     """
-    order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order_id = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='order')
     book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
-    book_item = models.ManyToManyField(BookItem, related_name="order_items", related_query_name="order_item")
+    book_item = models.ManyToManyField(BookItem, related_name="order_item", related_query_name="order_item")
     # todo: while creating new OrderItem object to have a check that related BookItem.status == AVAILABLE
 
     class Meta:

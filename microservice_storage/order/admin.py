@@ -9,6 +9,13 @@ class OrderInline(admin.TabularInline):
     model = OrderItem
     extra = 1
 
+    def get_queryset(self, request):
+        """
+        function for returning the Model queryset
+        """
+        obj = OrderItem.objects.filter(book_item__status="AVAILABLE")
+        return obj
+
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
