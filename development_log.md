@@ -373,6 +373,11 @@ cd microservice_storage
 ##### Creating models
 
 - creating/updating models for "storage"
+  - Book
+  - BookItem
+  - Order
+  - OrderItem
+  - ![graph](https://github.com/gorgeous-george/dummy_shop/blob/main/microservice_storage/storage_models_graph.png)
 - registering models at admin.py
 - rebuilding docker-compose
 - connecting to "storage" container to apply migrations
