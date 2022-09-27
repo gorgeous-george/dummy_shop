@@ -18,7 +18,7 @@ class Book(models.Model):
     """
     # todo: to make Book.id synchronized with shop's Book.book_id_storage
     title = models.CharField(max_length=200)
-    left_in_stock = models.IntegerField(default=0)       # todo: to make it calculated based on book instances left in stock (API storage)
+    left_in_stock = models.IntegerField(default=0)       # todo for shop: to make it calculated based on book instances left in stock (API storage)
 
     class Meta:
         ordering = ["title"]
@@ -35,7 +35,7 @@ class BookItem(models.Model):
     Model representing book items, namely book copies available at "storage"
     There are can be a number of unique copies of the same book
     """
-    book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
+    book_id = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='book')
     isbn = models.UUIDField(primary_key=False, default=uuid.uuid4, editable=False)
     AVAILABLE = 'AVAILABLE'
     ORDERED = 'ORDERED'
@@ -52,4 +52,4 @@ class BookItem(models.Model):
         """
         String for representing the Model object.
         """
-        return self.isbn
+        return self.status
