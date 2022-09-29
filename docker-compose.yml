@@ -197,6 +197,7 @@ services:
       - nginx_network
     ports:
       - 80:80
+      - 8001:8001
       - 8025:8025
       - 5555:5555
     depends_on:

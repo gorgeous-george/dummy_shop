@@ -35,7 +35,7 @@ microservice_storage/media
 .python-version
 
 # celery
-celery.py
+#celery.py
 celerybeat-schedule.*
 
 # Environments
