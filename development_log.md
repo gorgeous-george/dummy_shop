@@ -86,7 +86,7 @@ That's it, now the project can be opened via Pycharm. Each microservice will hav
 - open Settings/Project:"first_service name"/Project Structure and make sure that both services have its virtual env folders marked as "Excluded"
 - open Settings/Languages & Frameworks/Django and make sure that both services have enabled "Enable Django Support" and have "Django project root", "Settings" and "Manage script" selected/added appropriately
 - open Run/Edit Configurations and create django server configuration for both services appropriately including name, project (selectable), interpreter and correct value of "DJANGO_SETTINGS_MODULE" environment variable
-- add alternative dummy databases to run the services outside the docker container (for example - SQLite)
+- add alternative dummy databases to run the services outside the docker container (SQLite is an option)
 
 ***Don't forget to secure the SECRET_KEYS***
 
@@ -206,6 +206,7 @@ touch docker-compose.yml
 > - storage
 > - db_shop
 > - db_storage
+> - TBD
 <br><br>
 >
 > networks:
@@ -233,7 +234,7 @@ sudo docker-compose down
   ```
   - updating "microservice_shop/core.settings" - DATABASES
   - adding appropriate DATABASE credentials to "shop.env" file
-  - updating "django-compose.yml" with db services
+  - adding appropriate sections to "django-compose.yml"
   - creating "docker-entrypoint.sh" and "wait-for-command.sh" to check that db is up before running services dependent on db
   - updating Dockerfile
   - building and running up the docker-compose
@@ -257,13 +258,29 @@ sudo docker-compose down
   ```
 
 ***
-#### 2.5 Configuring other services:
+#### 2.6 Configuring django extensions and tools:
 - django-debug-toolbar for both "shop" and "storage" services (https://django-debug-toolbar.readthedocs.io/en/latest/installation.html)
 - django-extensions for both "shop" and "storage" services (https://django-extensions.readthedocs.io/en/latest/installation_instructions.html)
 - graph_models for both "shop" and "storage" services (https://django-extensions.readthedocs.io/en/latest/graph_models.html)
-- celery
-- TBD...
+- django-celery-beat scheduler for "shop" service (https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html#beat-custom-schedulers)
+- TBD
 
+***
+#### 2.7 Configuring the microservices as docker containers
+- celery for both "shop" and "storage" TBD services (https://docs.celeryq.dev/en/stable/django/first-steps-with-django.html)
+  - installation, updating requirements, 
+  - updating core.settings, 
+  - __init.py__, 
+  - creating celery.py, 
+  - tasks.py, 
+  - add appropriate sections to "django-compose.yml"
+- rabbitmq for both "shop" and "storage" services (as broker for celery), add appropriate sections to "django-compose.yml"
+- redis cache, add appropriate sections to "django-compose.yml" TBD
+- pgadmin, add appropriate sections to "django-compose.yml" TBD
+- swagger, add appropriate sections to "django-compose.yml" TBD 
+- nginx, add appropriate sections to "django-compose.yml" TBD
+- flower, add appropriate sections to "django-compose.yml" TBD
+- mailhog, add appropriate sections to "django-compose.yml" TBD
 
 ***
 ### 3. Development
@@ -382,30 +399,51 @@ cd microservice_storage
 - rebuilding docker-compose
 - connecting to "storage" container to apply migrations
 
-- Picture of models created TBD 
-
 ##### Creating views
 
-##### Configuring templates
+- **"book"** application
+  - BookViewSet
+  - BookItemViewSet
+  
+- **"order"** application
+  - OrderViewSet
+  - OrderItemViewSet
+
+##### Creating serializers
 
 - **"book"** application
-  - TBD
+  - BookSerializer
+  - BookItemSerializer
+  
 - **"order"** application
-  - TBD
+  - OrderSerializer
+  - OrderItemSerializer
 
-##### Creating forms
 ##### Configuring urls
 
-
-
-
-***
-### 4. Testing
-
+- core
+- book
+- order
 
 ***
-### 5. Implementing (deploy)
+### 4. Developing business logic
 
+- API: POST request from "shop" to "storage" - Order:{id, client, address, book, quantity} TBD
+- API: GET request from "shop" to "storage" - Book:{id, left_in_stock} TBD 
+- API: GET request from "shop" to "storage" - Order:{id, status} TBD 
+- Celery: sending email to client after order execution by "storage" admin TBD
 
 ***
-### 6. Post-implementation checks
+### 5. Testing
+
+TBD
+
+***
+### 6. Implementing (deploy)
+
+TBD 
+
+***
+### 7. Post-implementation checks
+
+TBD
