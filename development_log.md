@@ -263,24 +263,24 @@ sudo docker-compose down
 - django-extensions for both "shop" and "storage" services (https://django-extensions.readthedocs.io/en/latest/installation_instructions.html)
 - graph_models for both "shop" and "storage" services (https://django-extensions.readthedocs.io/en/latest/graph_models.html)
 - django-celery-beat scheduler for "shop" service (https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html#beat-custom-schedulers)
-- TBD
+- django-redis-cache for "shop" service (https://django-redis-cache.readthedocs.io/en/latest/intro_quick_start.html)
 
 ***
 #### 2.7 Configuring the microservices as docker containers
-- celery for both "shop" and "storage" TBD services (https://docs.celeryq.dev/en/stable/django/first-steps-with-django.html)
+- celery for "shop" service (https://docs.celeryq.dev/en/stable/django/first-steps-with-django.html)
   - installation, updating requirements, 
   - updating core.settings, 
   - __init.py__, 
   - creating celery.py, 
   - tasks.py, 
   - add appropriate sections to "django-compose.yml"
-- rabbitmq for both "shop" and "storage" services (as broker for celery), add appropriate sections to "django-compose.yml"
-- redis cache, add appropriate sections to "django-compose.yml" TBD
-- pgadmin, add appropriate sections to "django-compose.yml" TBD
+- rabbitmq for "shop" service (as broker for celery), add appropriate sections to "django-compose.yml"
+- redis cache, add appropriate sections to "django-compose.yml"
+- pgadmin, add appropriate sections to "django-compose.yml"
+- nginx, add appropriate sections to "django-compose.yml"
+- flower, add appropriate sections to "django-compose.yml"
+- mailhog, add appropriate sections to "django-compose.yml"
 - swagger, add appropriate sections to "django-compose.yml" TBD 
-- nginx, add appropriate sections to "django-compose.yml" TBD
-- flower, add appropriate sections to "django-compose.yml" TBD
-- mailhog, add appropriate sections to "django-compose.yml" TBD
 
 ***
 ### 3. Development
