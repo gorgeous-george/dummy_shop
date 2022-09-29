@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     "debug_toolbar",
     "django_extensions",
+    'django_celery_beat',
 
     'auth_shop',
     'book',
@@ -155,3 +156,38 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Celery Configuration Options
+CELERY_TIMEZONE = 'Europe/Kiev'
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_beat_scheduler = "django_celery_beat.schedulers:DatabaseScheduler"
+
+# # Cache settings
+# USER_AGENTS_CACHE = "default"
+#
+# REDIS_URL ="redis://redis:6379/0"
+# REDIS_CACHE ="redis:6379"
+# AMQP_URL = amqp://rabbitmq:5672
+#
+# BROKER_URL = AMQP_URL
+# CELERY_result_backend = REDIS_URL
+# CELERY_BROKER_URL = BROKER_URL
+#
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": [
+#             REDIS_URL,
+#         ],
+#         "OPTIONS": {
+#             "CONNECTION_POOL_CLASS": "redis.BlockingConnectionPool",
+#             "CONNECTION_POOL_CLASS_KWARGS": {
+#                 "max_connections": 50,
+#                 "timeout": 20,
+#             },
+#             "MAX_CONNECTIONS": 1000,
+#             "PICKLE_VERSION": -1,
+#         },
+#     },
+# }
