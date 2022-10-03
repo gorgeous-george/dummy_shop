@@ -27,7 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    '0.0.0.0'
+    '0.0.0.0',
+    'storage',
+
 ]
 
 
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "django_extensions",
     'django_celery_beat',
+    'django_celery_results',
 
     'auth_shop',
     'book',
@@ -131,7 +134,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'uk'
 
-TIME_ZONE = 'Europe/Kiev'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -157,21 +160,20 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Celery Configuration Options
-CELERY_TIMEZONE = 'Europe/Kiev'
+# Celery and cache settings
+CELERY_TIMEZONE = TIME_ZONE
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
-CELERY_beat_scheduler = "django_celery_beat.schedulers:DatabaseScheduler"
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
-# Cache settings
 USER_AGENTS_CACHE = "default"
 
-REDIS_URL ="redis://redis:6379/0"
-REDIS_CACHE ="redis:6379"
+REDIS_URL = "redis://redis:6379/0"
+REDIS_CACHE = "redis:6379"
 AMQP_URL = "amqp://rabbitmq:5672"
 
 BROKER_URL = AMQP_URL
-CELERY_result_backend = REDIS_URL
+CELERY_RESULT_BACKEND = REDIS_URL
 CELERY_BROKER_URL = BROKER_URL
 
 CACHES = {

@@ -7,32 +7,6 @@ from order.forms import OrderUpdateForm
 from order.models import Order, OrderItem
 
 
-# class OrderItemListView(LoginRequiredMixin, ListView):
-#     """
-#     Class-based view for a list of all order items added to shopping cart.
-#     """
-#     model = OrderItem
-#     paginate_by = 5
-#
-#     def get_queryset(self):
-#         """
-#         adding related information on book and order details
-#         """
-#         queryset = OrderItem.objects.filter(order_id__client_id=self.request.user.id)
-#         return queryset
-#
-#     def get_context_data(self, **kwargs):
-#         """
-#         adding related information on user/client
-#         """
-#         client = self.request.user
-#         order_pk = Order.objects.get(client=client)
-#         context = super().get_context_data(**kwargs)
-#         context["client"] = client
-#         context["order_pk"] = order_pk
-#         return context
-
-
 class OrderDetailView(LoginRequiredMixin, DetailView):
     """
     Class-based view for a list of all books added to shopping cart.

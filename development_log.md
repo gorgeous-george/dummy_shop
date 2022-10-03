@@ -276,16 +276,16 @@ sudo docker-compose down
   - add appropriate sections to "django-compose.yml"
 - rabbitmq for "shop" service (as broker for celery), add appropriate sections to "django-compose.yml"
 - redis cache, add appropriate sections to "django-compose.yml"
-- pgadmin, add appropriate sections to "django-compose.yml"
+- pgadmin, add appropriate sections to "django-compose.yml" TBD
 - nginx, add appropriate sections to "django-compose.yml"
-- flower, add appropriate sections to "django-compose.yml"
+- flower, add appropriate sections to "django-compose.yml" TBD
 - mailhog, add appropriate sections to "django-compose.yml"
 - swagger, add appropriate sections to "django-compose.yml" TBD 
 
 ***
 ### 3. Development
 
-To create new apps, models, views, etc. - don't forget to switch ".venv_shop" and ".venv_storage" virtual environments appropriately 
+Creating new apps, models, views, etc. - don't forget to switch ".venv_shop" and ".venv_storage" virtual environments appropriately 
 
 #### 3.1 "Shop" service
 
@@ -428,9 +428,11 @@ cd microservice_storage
 ***
 ### 4. Developing business logic
 
-- API: POST request from "shop" to "storage" - Order:{id, client, address, book, quantity} TBD
-- API: GET request from "shop" to "storage" - Book:{id, left_in_stock} TBD 
+- API: POST request from "shop" to "storage" - Order, OrderItems:{id, client, delivery_address}, {book, quantity} TBD
+- Shop: synchronization request from "shop" to "storage" on book.left_in_stock 
 - API: GET request from "shop" to "storage" - Order:{id, status} TBD 
+- Storage book.views: synchronization of available book items with book.left_in_stock
+- Storage book.views: book items' statuses update after order fulfillment
 - Celery: sending email to client after order execution by "storage" admin TBD
 
 ***

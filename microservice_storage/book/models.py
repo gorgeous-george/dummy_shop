@@ -52,4 +52,4 @@ class BookItem(models.Model):
         """
         String for representing the Model object.
         """
-        return self.status
+        return (self.status)
