@@ -2,31 +2,20 @@ from book.models import Book, BookItem
 from rest_framework import serializers
 
 
-class BookSerializer(serializers.HyperlinkedModelSerializer):
-    book_item = serializers.HyperlinkedRelatedField(
-        many=True,
-        read_only=True,
-        source='book',
-        view_name='bookitem-detail',
-    )
+class BookSerializer(serializers.ModelSerializer):
     """
     Serializer for Book model.
     """
     class Meta:
         model = Book
-        fields = ['title', 'left_in_stock', 'book_item']
+        fields = ['pk', 'title', 'left_in_stock']
 
 
-class BookItemSerializer(serializers.HyperlinkedModelSerializer):
-    book = serializers.HyperlinkedRelatedField(
-        many=False,
-        read_only=True,
-        source='book_id',
-        view_name='book-detail',
-    )
+class BookItemSerializer(serializers.ModelSerializer):
+    book_id = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
     """
     Serializer for BookItem model.
     """
     class Meta:
         model = BookItem
-        fields = ['isbn', 'status', 'book']
+        fields = ['isbn', 'status', 'book_id']

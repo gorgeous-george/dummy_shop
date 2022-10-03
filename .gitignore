@@ -36,7 +36,7 @@ microservice_storage/media
 
 # celery
 #celery.py
-celerybeat-schedule.*
+*celerybeat-schedule*
 
 # Environments
 microservice_shop/.venv_shop/

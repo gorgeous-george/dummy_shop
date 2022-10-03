@@ -1,6 +1,9 @@
 from django.contrib import admin
 from order.models import Order, OrderItem
 
+@admin.action(description='Complete order')
+def make_completed(modeladmin, request, queryset):
+    queryset.update(status='SUCCESS')
 
 class OrderInline(admin.TabularInline):
     """
@@ -8,13 +11,6 @@ class OrderInline(admin.TabularInline):
     """
     model = OrderItem
     extra = 1
-
-    def get_queryset(self, request):
-        """
-        function for returning the Model queryset
-        """
-        obj = OrderItem.objects.filter(book_item__status="AVAILABLE")
-        return obj
 
 
 @admin.register(Order)
@@ -26,9 +22,6 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = ["client_email", "status", "delivery_address", "shop_order_id"]
     list_filter = ["id", "client_email", "status"]
     ordering = ("id", "client_email", "status")
+    actions = [make_completed]
 
-    def get_queryset(self, request):
-        """
-        function for returning the Model queryset
-        """
-        return super(OrderAdmin, self).get_queryset(request)
+
