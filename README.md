@@ -1,47 +1,47 @@
-# Dummy book shop 
+# Dummy Shop 
 
 ## Django app + microservices 
 
-The App has been created for learning purposes. <br>
-Objective is to develop a complex application from scratch using defined list of microservices. 
+The "Dummy Shop" App has been created for learning purposes. <br>
+Objective was defined as development of a complex application from scratch using defined list of microservices run via docker containers
+
+## Common logic:
+- There are two web-services named as "Shop" and "Storage".
+- "Shop" emulates a book store and has primitive shopping cart
+- "Storage" emulates a book storage that receives orders from the shop and fulfill them
 
 ## Architecture
 
-- ![concept](https://app.terrastruct.com/diagrams/1464302938#path=Overview.Shop%2520concept)
-- '''models scheme'''
-- '''data flow : synchronization, create order, update storage, return data'''
+- ![concept](https://app.terrastruct.com/diagrams/1464302938)
+- Detailed development log is [here](https://github.com/gorgeous-george/dummy_shop/blob/main/development_log.md)
+- '''data flow : synchronization, create order, update storage, return data''' TBD
 
 ## Quick Start
 
 To get this project up and running locally on your computer:
 
-- Set up the Python development environment. It is recommended to use a Python virtual environment.
-- Assuming you have Python setup, run the following commands (if you're on Windows you may use py or py -3 instead of python3 to start Python):
-
+- Set up Python 
+- Set up Docker
+- Add shop.env and storage.env files to the project's root with the following content (postgres db should be used)
+  - DJANGO_SECRET_KEY=
+  - DB_HOST=
+  - DB_PORT=
+  - DB_USER=
+  - DB_PASSWORD=
+  - DB_NAME=
+- Run the following commands
 ```
-'''to update this section!!!'''
-pip3 install -r requirements.txt
-python3 manage.py makemigrations
-python3 manage.py migrate
-python3 manage.py createsuperuser # Create a superuser
-python3 manage.py fill_db # to fill the database with lorem ipsum data
-python3 manage.py runserver
+docker-compose build
+docker-compose up
 ```
+- connect to "shop" and "storage" containers and run the following commands within each
+```
+./manage.py makemigrations
+./manage.py migrate
+./manage.py createsuperuser
+```
+- Create some Books and Orders - please do it within http://127.0.0.1:8000/admin and http://127.0.0.1:8001/admin  
 
-**Add shop.env file in root with content**
-
-DJANGO_SECRET_KEY=
-DB_HOST=
-DB_PORT=
-DB_USER=
-DB_PASSWORD=
-DB_NAME=
-
-Now the application is working
+<br>Now the application is working
 - To open the "SHOP" main page - open a browser to http://127.0.0.1:8000/
 - To open the "STORAGE" API admin console - open a browser to http://127.0.0.1:8000/admin/
-
-## Features:
-- 1
-- 2
-- 
