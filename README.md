@@ -4,6 +4,7 @@
 
 The "Dummy Shop" App has been created for learning purposes. <br>
 Objective was defined as development of a complex application from scratch using defined list of microservices run via docker containers
+Detailed development log is [here](https://github.com/gorgeous-george/dummy_shop/blob/main/development_log.md)
 
 ## Common logic:
 - There are two web-services named as "Shop" and "Storage".
@@ -13,7 +14,6 @@ Objective was defined as development of a complex application from scratch using
 ## Architecture
 
 - ![concept](/concept.png)
-- Detailed development log is [here](https://github.com/gorgeous-george/dummy_shop/blob/main/development_log.md)
 - '''data flow : synchronization, create order, update storage, return data''' TBD
 
 ## Quick Start
