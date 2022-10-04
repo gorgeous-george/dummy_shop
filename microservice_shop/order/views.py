@@ -6,6 +6,8 @@ from book.models import Book
 from order.forms import OrderUpdateForm
 from order.models import Order, OrderItem
 
+from order.tasks import place_order_task
+
 
 class OrderDetailView(LoginRequiredMixin, DetailView):
     """
@@ -82,4 +84,6 @@ class OrderConfirm(LoginRequiredMixin, UpdateView):
         obj = self.get_object()
         obj.status = 'ORDERED'
         obj.save()
+        pk = obj.id
+        place_order_task(pk).delay()
         return result

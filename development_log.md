@@ -206,7 +206,12 @@ touch docker-compose.yml
 > - storage
 > - db_shop
 > - db_storage
-> - TBD
+> - nginx
+> - mailhog
+> - pgadmin
+> - flower
+> - redis
+> - rabbitmq
 <br><br>
 >
 > networks:
@@ -276,11 +281,10 @@ sudo docker-compose down
   - add appropriate sections to "django-compose.yml"
 - rabbitmq for "shop" service (as broker for celery), add appropriate sections to "django-compose.yml"
 - redis cache, add appropriate sections to "django-compose.yml"
-- pgadmin, add appropriate sections to "django-compose.yml" TBD
+- pgadmin, add appropriate sections to "django-compose.yml" 
 - nginx, add appropriate sections to "django-compose.yml"
-- flower, add appropriate sections to "django-compose.yml" TBD
+- flower, add appropriate sections to "django-compose.yml" 
 - mailhog, add appropriate sections to "django-compose.yml"
-- swagger, add appropriate sections to "django-compose.yml" TBD 
 
 ***
 ### 3. Development
@@ -325,7 +329,7 @@ deactivate
   - *other auth views (password reset, login, logout) are standard django views*
 - **"book"** application
   - book list
-  - book detail
+  - book detail (implementing @cache_page decorator)
 - **"order"** application 
   - cart create
   - order detail
@@ -426,14 +430,13 @@ cd microservice_storage
 - order
 
 ***
-### 4. Developing business logic
+### 4. Developing business logic and appropriate Celery tasks
 
-- API: POST request from "shop" to "storage" - Order, OrderItems:{id, client, delivery_address}, {book, quantity} TBD
-- Shop: synchronization request from "shop" to "storage" on book.left_in_stock 
-- API: GET request from "shop" to "storage" - Order:{id, status} TBD 
+- Shop: POST "order placement" request from "shop" to "storage" - Order, OrderItems:{id, client, delivery_address}, {book, quantity} 
+- Shop: GET synchronization request from "shop" to "storage" on book.left_in_stock 
+- Shop: GET request from "shop" to "storage" - Order:{id, status} and sending email to client for succeeded orders
 - Storage book.views: synchronization of available book items with book.left_in_stock
 - Storage book.views: book items' statuses update after order fulfillment
-- Celery: sending email to client after order execution by "storage" admin TBD
 
 ***
 ### 5. Testing
