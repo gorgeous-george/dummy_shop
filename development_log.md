@@ -215,8 +215,16 @@ touch docker-compose.yml
 <br><br>
 >
 > networks:
-> 
+> - shop_db_network:
+> - storage_db_network:
+> - celery_network:
+> - nginx_network:
+> - mailhog_network:
 > volumes:
+> - db_shop_volume:
+> - db_storage_volume:
+> - rabbitmq_data:
+> - redis:
 
 - building and running up the docker-compose
 ```
@@ -313,7 +321,7 @@ deactivate
   - Book 
   - Order
   - OrderItem
-  - ![graph](https://github.com/gorgeous-george/dummy_shop/blob/main/microservice_shop/shop_models_graph.png)
+  - ![graph](/microservice_shop/shop_models_graph.png)
 - registering models at admin.py
 - rebuilding docker-compose
 - connecting to "shop" container to apply migrations
@@ -398,7 +406,7 @@ cd microservice_storage
   - BookItem
   - Order
   - OrderItem
-  - ![graph](https://github.com/gorgeous-george/dummy_shop/blob/main/microservice_storage/storage_models_graph.png)
+  - ![graph](/microservice_storage/storage_graph_model.png)
 - registering models at admin.py
 - rebuilding docker-compose
 - connecting to "storage" container to apply migrations
