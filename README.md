@@ -12,7 +12,7 @@ Objective was defined as development of a complex application from scratch using
 
 ## Architecture
 
-- ![concept](https://app.terrastruct.com/diagrams/1464302938)
+- ![concept](/concept.png)
 - Detailed development log is [here](https://github.com/gorgeous-george/dummy_shop/blob/main/development_log.md)
 - '''data flow : synchronization, create order, update storage, return data''' TBD
 
