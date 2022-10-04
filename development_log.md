@@ -220,6 +220,7 @@ touch docker-compose.yml
 > - celery_network:
 > - nginx_network:
 > - mailhog_network:
+<br><br>
 > volumes:
 > - db_shop_volume:
 > - db_storage_volume:
