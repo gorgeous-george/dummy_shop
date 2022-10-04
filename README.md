@@ -11,10 +11,9 @@ Detailed development log is [here](https://github.com/gorgeous-george/dummy_shop
 - "Shop" emulates a book store and has primitive shopping cart
 - "Storage" emulates a book storage that receives orders from the shop and fulfill them
 
-## Architecture
+## Concept architecture
 
-- ![concept](/concept.png)
-- '''data flow : synchronization, create order, update storage, return data''' TBD
+![concept](/concept.png)
 
 ## Quick Start
 
